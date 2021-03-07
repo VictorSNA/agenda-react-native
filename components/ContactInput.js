@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Button, StyleSheet, TextInput, View } from 'react-native';
-import {ContactName, ContactNumber} from '../utils/Messages';
+import { ContactName, ContactNumber } from '../utils/Messages';
 
 const ContactInput = (props) => {
   const [nome, setNome] = useState("");
@@ -20,12 +20,12 @@ const ContactInput = (props) => {
           onChangeText={capturarNome}
         />
       </View>
-        <View style={styles.textInput}>
-          <TextInput
-            placeholder={ContactNumber}
-            onChangeText={capturarNumero}
-          />
-        </View>
+      <View style={styles.textInput}>
+        <TextInput
+          placeholder={ContactNumber}
+          onChangeText={capturarNumero}
+        />
+       </View>
 
       <View>
         <Button
@@ -43,11 +43,10 @@ const ContactInput = (props) => {
 
 const styles = StyleSheet.create({
   textInput: {
-    width: 200,
-    paddingVertical: 5,
-    borderWidth: 2,
-    marginVertical: 2,
-    borderRadius: 10,
+    minWidth: '100%',
+    borderWidth: 1,
+    padding: 15,
+    marginVertical: 3
   }
 });
 export default ContactInput;

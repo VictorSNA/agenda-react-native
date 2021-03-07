@@ -1,12 +1,22 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, TouchableNativeFeedback } from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
+  TouchableNativeFeedback
+} from 'react-native';
 
 const ContactList = (props) => {
   const renderItem = ({item}) => {
     return ([item].map(([nome, numero]) => (
-      <TouchableNativeFeedback onLongPress={() => props.onDelete(nome)}>
+      <TouchableNativeFeedback
+        key={numero}
+        onLongPress={() => props.onDelete(nome)}
+      >
         <View key={numero} style={styles.itemNaLista}>
-          <Text>{nome} - {numero}</Text>
+          <Text key={numero}>{nome} - {numero}</Text>
         </View>
       </TouchableNativeFeedback>
       )
@@ -14,13 +24,15 @@ const ContactList = (props) => {
     )
   }
   return (
-    <View style={{marginTop: 10}}>
-      <Text style={{fontSize: 20}}>Lista de contatos</Text>
-        <FlatList
-          data={Array.from(props.contatos)}
-          renderItem={renderItem}
-          keyExtractor={item => item.numero}
-        />
+    <View>
+      <Text style={{fontSize: 18}}>seus contatos</Text>
+        <SafeAreaView>
+          <FlatList
+            data={Array.from(props.contatos)}
+            renderItem={renderItem}
+            keyExtractor={item => item.numero}
+          />
+        </SafeAreaView>
     </View>
   )
 }
