@@ -7,8 +7,8 @@ import Cores from '../constants/Cores';
 
 const LugaresNavigator = createStackNavigator(
   {
-    NovoContato: NovoContatoTela,
-    ListaDeContatos: ListaDeContatosTela
+    ListaDeContatos: ListaDeContatosTela,
+    NovoContato: NovoContatoTela
   },
   {
     defaultNavigationOptions: {

@@ -4,11 +4,9 @@ import ContactInput from '../components/ContactInput';
 
 
 const NovoContatoTela = (props) => {
-
   return (
     <View>
-      <Text>Novo Contato</Text>
-      <ContactInput onAdicionarContato={props.addContato} />
+      <ContactInput onAdicionarContato={props.screenProps.addContato} />
     </View>
   )
 }

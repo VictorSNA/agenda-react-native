@@ -25,7 +25,6 @@ const ContactList = (props) => {
   }
   return (
     <View>
-      <Text style={{fontSize: 18}}>seus contatos</Text>
         <SafeAreaView>
           <FlatList
             data={Array.from(props.contatos)}
