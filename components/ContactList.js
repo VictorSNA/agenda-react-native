@@ -3,33 +3,34 @@ import {
   SafeAreaView,
   StyleSheet,
   View,
-  Text,
-  FlatList,
-  TouchableNativeFeedback
+  FlatList
 } from 'react-native';
 
+import ContatoItem from '../components/ContatoItem';
+import { useSelector } from 'react-redux';
+
 const ContactList = (props) => {
-  const renderItem = ({item}) => {
-    return ([item].map(([nome, numero]) => (
-      <TouchableNativeFeedback
-        key={numero}
-        onLongPress={() => props.onDelete(nome)}
-      >
-        <View key={numero} style={styles.itemNaLista}>
-          <Text key={numero}>{nome} - {numero}</Text>
-        </View>
-      </TouchableNativeFeedback>
-      )
-    )
+  const contatos = useSelector(estado => estado.contatos.contatos);
+  const renderItem = (contato) => {
+    return (
+      <ContatoItem
+      nome={contato.item.nome}
+      numero={contato.item.telefone}
+      onSelect={()=>
+        props.navigation.navigate('DetalhesDoLugar', {tituloLugar: lugar.item.titulo, idLugar: lugar.id})
+      }
+      imagem={null}
+      endereco={null}
+    />
     )
   }
   return (
     <View>
         <SafeAreaView>
           <FlatList
-            data={Array.from(props.contatos)}
+            data={contatos}
             renderItem={renderItem}
-            keyExtractor={item => item.numero}
+            keyExtractor={contato => contato.id}
           />
         </SafeAreaView>
     </View>

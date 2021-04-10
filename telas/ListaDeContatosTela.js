@@ -9,7 +9,7 @@ const ListaDeContatosTela = (props) =>{
   return(
     <View style={styles.main}>
       <View style={styles.container}>
-        <ContactList contatos={props.screenProps.contatos}  onDelete={props.screenProps.removeContato} />
+        <ContactList />
       </View>
     </View>
   );
