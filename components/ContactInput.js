@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, StyleSheet, TextInput, View } from 'react-native';
 import { ContactName, ContactNumber } from '../utils/Messages';
 import * as contatosActions from '../store/contatos-actions'
+import ImportPhoto from '../components/ImportPhoto';
 
 import { useDispatch } from 'react-redux';
 
@@ -10,6 +11,7 @@ const ContactInput = (props) => {
 
   const [nomeContato, setNomeContato] = useState("");
   const [numero, setNumero] = useState("");
+  const [image, setImage] = useState(null);
 
   const capturarNomeContato = (nomeContato) => {
     setNomeContato(nomeContato);
@@ -18,8 +20,12 @@ const ContactInput = (props) => {
     setNumero(numero);
   }
 
+  const addImage = (imageURI) => {
+    setImage(imageURI);
+  }
+
   const onAdicionarContato = () => {
-    dispatch(contatosActions.addContato(nomeContato, numero));
+    dispatch(contatosActions.addContato(nomeContato, numero, image));
     props.goBack();
   }
   return (
@@ -36,8 +42,10 @@ const ContactInput = (props) => {
           onChangeText={capturarNumero}
         />
        </View>
-
-      <View>
+      <View style={styles.textInput}>
+        <ImportPhoto addImage={{addImage}} />
+      </View>
+      <View style={styles.button}>
         <Button
           title="Adicionar contato"
           color="#003300"
@@ -57,6 +65,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 15,
     marginVertical: 3
+  },
+  button: {
+    marginTop: 0
   }
 });
 export default ContactInput;

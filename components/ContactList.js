@@ -19,7 +19,7 @@ const ContactList = (props) => {
       onSelect={()=>
         props.navigation.navigate('DetalhesDoLugar', {tituloLugar: lugar.item.titulo, idLugar: lugar.id})
       }
-      imagem={null}
+      imagem={contato.item.image}
       endereco={null}
     />
     )

@@ -18,7 +18,7 @@ const ListaDeContatosTela = (props) =>{
 ListaDeContatosTela.navigationOptions = ({ navigation }) => {
   return{
     headerTitle: "Todos os contatos",
-    headerRight:
+    headerRight: () =>
       <HeaderButtons
         HeaderButtonComponent={BotaoCabecalho}>
           <Item
