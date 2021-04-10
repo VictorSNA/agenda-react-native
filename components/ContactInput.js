@@ -1,23 +1,33 @@
 import React, { useState } from 'react';
 import { Button, StyleSheet, TextInput, View } from 'react-native';
 import { ContactName, ContactNumber } from '../utils/Messages';
+import * as contatosActions from '../store/contatos-actions'
+
+import { useDispatch } from 'react-redux';
 
 const ContactInput = (props) => {
-  const [nome, setNome] = useState("");
+  const dispatch = useDispatch ();
+
+  const [nomeContato, setNomeContato] = useState("");
   const [numero, setNumero] = useState("");
 
-  const capturarNome = (nome) => {
-    setNome(nome);
+  const capturarNomeContato = (nomeContato) => {
+    setNomeContato(nomeContato);
   }
   const capturarNumero = (numero) => {
     setNumero(numero);
+  }
+
+  const onAdicionarContato = () => {
+    dispatch(contatosActions.addContato(nomeContato, numero));
+    props.goBack();
   }
   return (
     <View>
       <View style={styles.textInput}>
         <TextInput
           placeholder={ContactName}
-          onChangeText={capturarNome}
+          onChangeText={capturarNomeContato}
         />
       </View>
       <View style={styles.textInput}>
@@ -32,7 +42,7 @@ const ContactInput = (props) => {
           title="Adicionar contato"
           color="#003300"
           onPress={() => {
-            props.onAdicionarContato(nome, numero);
+            onAdicionarContato();
           }
           }
         />
