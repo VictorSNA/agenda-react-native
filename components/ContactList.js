@@ -10,6 +10,7 @@ import ContatoItem from '../components/ContatoItem';
 import { useSelector } from 'react-redux';
 
 const ContactList = (props) => {
+  console.log(props);
   const contatos = useSelector(estado => estado.contatos.contatos);
   const renderItem = (contato) => {
     return (
@@ -17,7 +18,7 @@ const ContactList = (props) => {
       nome={contato.item.nome}
       numero={contato.item.telefone}
       onSelect={()=>
-        props.navigation.navigate('DetalhesDoLugar', {tituloLugar: lugar.item.titulo, idLugar: lugar.id})
+        props.navigation.navigate('DetalhesContato', {tituloLugar: contato.nome, idContato: contato.id})
       }
       imagem={contato.item.image}
       endereco={null}

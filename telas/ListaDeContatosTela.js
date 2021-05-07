@@ -9,7 +9,7 @@ const ListaDeContatosTela = (props) =>{
   return(
     <View style={styles.main}>
       <View style={styles.container}>
-        <ContactList />
+        <ContactList navigation={props.navigation}/>
       </View>
     </View>
   );
