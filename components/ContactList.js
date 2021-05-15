@@ -10,7 +10,6 @@ import ContatoItem from '../components/ContatoItem';
 import { useSelector } from 'react-redux';
 
 const ContactList = (props) => {
-  console.log(props);
   const contatos = useSelector(estado => estado.contatos.contatos);
   const renderItem = (contato) => {
     return (

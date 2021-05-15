@@ -3,7 +3,7 @@ import { inserirContato } from '../helpers/db';
 
 export const ADD_CONTATO = 'ADD_CONTATO';
 
-export const addContato = (nomeContato, telefone, image) => {
+export const addContato = (nomeContato, telefone, image, data, lat, lng) => {
   return async dispatch => {
     const nomeArquivo = image.split("/").pop();
     const novoPath = FileSystem.documentDirectory + nomeArquivo;
@@ -17,8 +17,9 @@ export const addContato = (nomeContato, telefone, image) => {
         telefone,
         image,
         "Somewhere",
-        0.000,
-        0.000
+        data,
+        lat,
+        lng
       );
       console.log(resultadoDB);
       dispatch(
@@ -33,6 +34,7 @@ export const addContato = (nomeContato, telefone, image) => {
         }
       )
     } catch(err) {
+      console.log("Algo deu errado")
       console.log(err);
       throw err;
     }

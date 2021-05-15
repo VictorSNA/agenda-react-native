@@ -6,6 +6,8 @@ import ImportPhoto from '../components/ImportPhoto';
 
 import { useDispatch } from 'react-redux';
 
+import CapturaLocalizacao from '../components/CapturaLocalizacao';
+
 const ContactInput = (props) => {
   const dispatch = useDispatch ();
 
@@ -25,8 +27,21 @@ const ContactInput = (props) => {
   }
 
   const onAdicionarContato = () => {
-    dispatch(contatosActions.addContato(nomeContato, numero, image));
+    dispatch(contatosActions.addContato(
+      nomeContato,
+      numero,
+      image,
+      new Date().toString(),
+      localizacao.lat,
+      localizacao.lng
+      ));
     props.goBack();
+  }
+
+  const [localizacao, setLocalizacaoSelecionada] = useState();
+
+  const capturaLocalizacao = (localizacao) => {
+    setLocalizacaoSelecionada(localizacao);
   }
   return (
     <View>
@@ -55,6 +70,7 @@ const ContactInput = (props) => {
           }
         />
       </View>
+      <CapturaLocalizacao setLocalizacao={(localizacao) => {capturaLocalizacao(localizacao)}}/>
     </View>
   )
 };

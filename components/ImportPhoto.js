@@ -24,8 +24,6 @@ const ImportPhoto = (props) => {
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
       setImage(result.uri);
       props.addImage.addImage(result.uri);
