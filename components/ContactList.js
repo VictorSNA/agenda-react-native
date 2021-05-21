@@ -1,27 +1,65 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
   View,
-  FlatList
+  FlatList,
+  TouchableOpacity,
+  Alert
 } from 'react-native';
 
 import ContatoItem from '../components/ContatoItem';
 import { useSelector } from 'react-redux';
 
 const ContactList = (props) => {
-  const contatos = useSelector(estado => estado.contatos.contatos);
+  const [contatos, setContatos] = useState ([]);
+
+  useEffectt(() => {
+    db.collection('contatos').onSnapshot((snapshot) => {
+      let aux = [];
+      snapshot.forEach(doc => {
+        aux.push({
+          id: doc.id,
+          data: doc.data().data,
+          nome: doc.data().nome,
+          telefone: doc.data().telefone,
+          image: doc.data().imagem
+        });
+      });
+      setContatos(aux);
+    });
+  }, []);
+
+  const removerItem = (chave) => {
+    Alert.alert(
+      "Apagar",
+      "Quer mesmo apagar seu contato?",
+      [
+        { text: "Cancelar" },
+        {
+          text: "Confirmar",
+          onPress: () => db.collection('lembretes').doc(chave).delete()
+        }
+      ]
+    )
+  }
+
   const renderItem = (contato) => {
     return (
+      <TouchableOpacity onLongPress={() => {removerItem(contato.item.id)}}>
+      <View>
       <ContatoItem
       nome={contato.item.nome}
       numero={contato.item.telefone}
       onSelect={()=>
-        props.navigation.navigate('DetalhesContato', {tituloLugar: contato.nome, idContato: contato.id})
+        props.navigation.navigate('DetalhesContato', {tituloLugar: contato.item.nome, idContato: contato.item.id})
       }
       imagem={contato.item.image}
       endereco={null}
-    />
+      />
+      </View>
+      </TouchableOpacity>
+
     )
   }
   return (

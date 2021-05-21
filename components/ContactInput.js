@@ -8,7 +8,20 @@ import { useDispatch } from 'react-redux';
 
 import CapturaLocalizacao from '../components/CapturaLocalizacao';
 
+import 'firebase/firestore';
+
+const db = firebase.firestore();
+
 const ContactInput = (props) => {
+  const adicionarContato = () => {
+    db.collection('contatos').add({
+      nome: nomeContato,
+      telefone: numero,
+      data: new Date(),
+      imagem: image
+    })
+  }
+
   const dispatch = useDispatch ();
 
   const [nomeContato, setNomeContato] = useState("");
@@ -35,6 +48,7 @@ const ContactInput = (props) => {
       localizacao.lat,
       localizacao.lng
       ));
+      adicionarContato();
     props.goBack();
   }
 

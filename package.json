@@ -30,10 +30,11 @@
     "react-navigation-header-buttons": "^7.0.0",
     "react-navigation-stack": "^2.10.4",
     "react-redux": "^7.2.3",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "firebase": "~7.9.0"
   },
   "devDependencies": {
-    "@babel/core": "~7.9.0"
+    "@babel/core": "~7.9.6"
   },
   "private": true
 }
