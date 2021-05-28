@@ -8,7 +8,13 @@ import { useDispatch } from 'react-redux';
 
 import CapturaLocalizacao from '../components/CapturaLocalizacao';
 
+import ENV from '../.env';
+
+import * as firebase from 'firebase';
 import 'firebase/firestore';
+
+if (!firebase.apps.length)
+  firebase.initializeApp(ENV);
 
 const db = firebase.firestore();
 

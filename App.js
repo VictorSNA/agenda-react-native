@@ -7,12 +7,6 @@ import contatosReducer from './store/contatos-reducer';
 
 import { init } from './helpers/db';
 
-import ENV from './.env';
-import * as firebase from 'firebase';
-
-if (!firebase.apps.length)
-  firebase.initializeApp(ENV);
-
 init().then(() => {
   console.log("Criação da base ocorreu com sucesso.");
 }).catch((err) => {

@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        app_path: /agenda-rn
+    image: agenda-rn
+    container_name: agenda-rn
+    volumes:
+      - .:/agenda-rn
+    ports:
+      - "19000:19000"
+    command: "expo start"

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+COMMAND=$1
+ARGS=${@:2}
+
+set -e
+
+run(){
+  docker-compose run --rm -e "web" $@
+}
+
+case $COMMAND in
+  setup)
+    docker-compose build --build-arg uid=$EUID
+    echo "All done!"
+  ;;
+  bash)
+    $0 run /bin/bash
+  ;;
+  run)
+    run $ARGS
+  ;;
+esac
+
+exit 0

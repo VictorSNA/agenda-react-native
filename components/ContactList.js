@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -11,10 +11,20 @@ import {
 import ContatoItem from '../components/ContatoItem';
 import { useSelector } from 'react-redux';
 
+import ENV from '../.env';
+
+import * as firebase from 'firebase';
+import 'firebase/firestore';
+
+if (!firebase.apps.length)
+  firebase.initializeApp(ENV);
+
+const db = firebase.firestore();
+
 const ContactList = (props) => {
   const [contatos, setContatos] = useState ([]);
 
-  useEffectt(() => {
+  useEffect(() => {
     db.collection('contatos').onSnapshot((snapshot) => {
       let aux = [];
       snapshot.forEach(doc => {
